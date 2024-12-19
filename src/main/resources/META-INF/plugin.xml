@@ -1,18 +1,37 @@
-<!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
-    <id>com.github.minjune8506.intellijplugindemo</id>
-    <name>intellij-plugin-demo</name>
-    <vendor>minjune8506</vendor>
 
+    <!-- A unique identifier of the plugin -->
+    <id>com.minjun.hello-world</id>
+    <!-- The user-visible plugin display name (Title Case). -->
+    <name>Hello World</name>
+    <!-- Indicate this plugin can be loaded in all IntelliJ Platform-based products. -->
     <depends>com.intellij.modules.platform</depends>
+    <!-- The plugin's range of compatible IntelliJ-based IDE versions. -->
+    <idea-version since-build="213"/>
+    <!-- The vendor name or organization ID (if created) in the Plugins settings dialog and on the JetBrains Marketplace plugin page. -->
+    <vendor>Minjun Kim</vendor>
+    <!-- The plugin description displayed on the JetBrains Marketplace plugin page and in the Plugins settings dialog. -->
+    <description><![CDATA[Hello Intellij Plugin World!<br/> It's my first hello world plugin]]></description>
 
-    <resource-bundle>messages.MyBundle</resource-bundle>
+    <!-- Defines the plugin actions. -->
+    <actions>
+        <!-- id: A unique action identifier. -->
+        <!-- class: The fully qualified name of the action implementation class. -->
+        <!-- text: The default long-version text to be displayed for the action -->
+        <action id="HelloWorldAction"
+                class="com.github.minjune8506.demo.action.HelloWorldAction"
+                text="Hello World Action: Hello World"
+                description="Hello world action">
 
-    <extensions defaultExtensionNs="com.intellij">
-        <toolWindow factoryClass="com.github.minjune8506.intellijplugindemo.toolWindow.MyToolWindowFactory" id="MyToolWindow"/>
-    </extensions>
+            <!-- Defines an alternative text for searching the action in Help | Find Action... or Navigate | Search Everywhere popups -->
+            <synonym text="HW"/>
 
-    <applicationListeners>
-        <listener class="com.github.minjune8506.intellijplugindemo.listeners.MyApplicationActivationListener" topic="com.intellij.openapi.application.ApplicationActivationListener"/>
-    </applicationListeners>
+            <!-- Specifies that the action should be added to an existing <group>. -->
+            <!-- single action can be added to multiple groups.-->
+            <add-to-group group-id="ToolsMenu"/>
+            <override-text place="MainMenu" text="Hello World Action in Main Menu"/>
+        </action>
+    </actions>
+
+
 </idea-plugin>
